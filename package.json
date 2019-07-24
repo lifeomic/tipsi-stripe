@@ -1,5 +1,5 @@
 {
-  "name": "tipsi-stripe",
+  "name": "@lifeomic/tipsi-stripe",
   "version": "7.5.1",
   "description": "React Native Stripe binding for iOS/Andriod platforms",
   "main": "src/index.js",
