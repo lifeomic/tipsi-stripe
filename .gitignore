@@ -73,6 +73,8 @@ android/gradle/wrapper/gradle-wrapper.properties
 node_modules/
 npm-debug.log
 
+/dist/
+
 tmp
 example_tmp
 example_podspec
