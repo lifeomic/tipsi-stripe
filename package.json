@@ -34,8 +34,8 @@
   "homepage": "https://github.com/tipsi/tipsi-stripe#readme",
   "rnpm": {
     "commands": {
-      "prelink": "node_modules/tipsi-stripe/scripts/pre-link.sh",
-      "postlink": "node_modules/tipsi-stripe/scripts/post-link.sh"
+      "prelink": "node_modules/@lifeomic/tipsi-stripe/scripts/pre-link.sh",
+      "postlink": "node_modules/@lifeomic/tipsi-stripe/scripts/post-link.sh"
     }
   },
   "peerDependencies": {
