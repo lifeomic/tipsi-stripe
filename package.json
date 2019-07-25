@@ -1,6 +1,6 @@
 {
   "name": "@lifeomic/tipsi-stripe",
-  "version": "7.6.1",
+  "version": "7.6.2",
   "description": "React Native Stripe binding for iOS/Andriod platforms",
   "main": "dist/index.js",
   "types": "index.d.ts",
