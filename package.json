@@ -3,6 +3,7 @@
   "version": "7.5.1",
   "description": "React Native Stripe binding for iOS/Andriod platforms",
   "main": "dist/index.js",
+  "types": "index.d.ts",
   "scripts": {
     "clean": "rm -rf dist",
     "prebuild": "yarn clean",
