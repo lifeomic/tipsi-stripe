@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as ReactNative from "react-native";
+import * as React from 'react';
+import * as ReactNative from 'react-native';
 
 export interface StripeOptions {
   publishableKey: string;
@@ -7,36 +7,36 @@ export interface StripeOptions {
   androidPayMode?: string;
 }
 
-export type AccountHolderType = "company" | "individual";
+export type AccountHolderType = 'company' | 'individual';
 
 export type ApplePayNetworks =
-  | "american_express"
-  | "discover"
-  | "master_card"
-  | "visa";
+  | 'american_express'
+  | 'discover'
+  | 'master_card'
+  | 'visa';
 
 export type ApplePayAddressFields =
-  | "all"
-  | "name"
-  | "email"
-  | "phone"
-  | "postal_address";
+  | 'all'
+  | 'name'
+  | 'email'
+  | 'phone'
+  | 'postal_address';
 
 export type ApplePayShippingType =
-  | "shipping"
-  | "delivery"
-  | "store_pickup"
-  | "service_pickup";
+  | 'shipping'
+  | 'delivery'
+  | 'store_pickup'
+  | 'service_pickup';
 
 export type StripeSourceType =
-  | "bancontact"
-  | "bitcoin"
-  | "giropay"
-  | "ideal"
-  | "sepaDebit"
-  | "sofort"
-  | "threeDSecure"
-  | "alipay";
+  | 'bancontact'
+  | 'bitcoin'
+  | 'giropay'
+  | 'ideal'
+  | 'sepaDebit'
+  | 'sofort'
+  | 'threeDSecure'
+  | 'alipay';
 
 export interface AppleNetworkOptions {
   networks: ApplePayNetworks;
@@ -60,15 +60,15 @@ export interface AndroidPaymentOptions {
 }
 
 export type StripeCardBrand =
-  | "JCB"
-  | "American Express"
-  | "Visa"
-  | "Discover"
-  | "Diners Club"
-  | "MasterCard"
-  | "Unknown";
+  | 'JCB'
+  | 'American Express'
+  | 'Visa'
+  | 'Discover'
+  | 'Diners Club'
+  | 'MasterCard'
+  | 'Unknown';
 
-export type StripeCardFundingType = "debit" | "credit" | "prepaid" | "unknown";
+export type StripeCardFundingType = 'debit' | 'credit' | 'prepaid' | 'unknown';
 
 export interface StripeCardDetails {
   cardId: string;
@@ -114,7 +114,7 @@ export interface StripeToken {
 export interface ApplePaymentRequestItem {
   label: string;
   amount: string;
-  type: "final" | "pending";
+  type: 'final' | 'pending';
 }
 
 export interface AndroidPaymentRequestItem {
@@ -126,7 +126,7 @@ export interface AndroidPaymentRequestItem {
 }
 
 export interface CardFormParams {
-  requiredBillingAddressFields: "full" | "zip";
+  requiredBillingAddressFields: 'full' | 'zip';
   managedAccountCurrency: string;
   smsAutofillDisabled: boolean;
   prefilledInformation: {
@@ -227,12 +227,7 @@ export class Stripe {
 
 export interface PaymentCardTextFieldNativeEvent {
   valid: boolean;
-  params: {
-    number: string;
-    expMonth: string;
-    expYear: string;
-    cvc: string;
-  };
+  params: Pick<CardTokenParams, 'number' | 'expMonth' | 'expYear' | 'cvc'>;
 }
 
 export interface PaymentCardTextFieldCommonProps {
@@ -241,13 +236,14 @@ export interface PaymentCardTextFieldCommonProps {
   cvcPlaceholder?: string;
   disabled?: boolean;
 
-  onChange?: (params: PaymentCardTextFieldNativeEvent) => void;
+  onChange?(
+    event: ReactNative.NativeSyntheticEvent<PaymentCardTextFieldNativeEvent>
+  ): void;
 
-  /** @deprecated */
-  onParamsChange?: (
+  onParamsChange?(
     valid: boolean,
-    nativeEventParams: PaymentCardTextFieldNativeEvent["params"]
-  ) => void;
+    nativeEventParams: PaymentCardTextFieldNativeEvent['params']
+  ): void;
 
   style?: ReactNative.StyleProp<ReactNative.ViewStyle & { color?: string }>;
 }
@@ -256,7 +252,7 @@ export interface PaymentCardTextFieldIOSProps {
   cursorColor?: string;
   textErrorColor?: string;
   placeholderColor?: string;
-  keyboardAppearance?: "default" | "light" | "dark";
+  keyboardAppearance?: 'default' | 'light' | 'dark';
 }
 
 export interface PaymentCardTextFieldAndroidProps {
@@ -268,15 +264,15 @@ export interface PaymentCardTextFieldAndroidProps {
 }
 
 export class PaymentCardTextField extends React.Component<
-  Omit<ReactNative.ViewProps, "style"> &
+  Omit<ReactNative.ViewProps, 'style'> &
     PaymentCardTextFieldCommonProps &
     PaymentCardTextFieldIOSProps &
     PaymentCardTextFieldAndroidProps
 > {
-  isFocused: () => boolean;
-  focus: () => void;
-  blur: () => void;
-  setParams: (params: CardTokenParams) => void;
+  isFocused(): boolean;
+  focus(): void;
+  blur(): void;
+  setParams(params: CardTokenParams): void;
 }
 
 export interface StripeNativeErrorDescription<
@@ -287,34 +283,34 @@ export interface StripeNativeErrorDescription<
 }
 
 export const enum StripeNativeErrorCode {
-  busy = "busy",
-  cancelled = "cancelled",
-  purchaseCancelled = "purchaseCancelled",
-  sourceStatusCanceled = "sourceStatusCanceled",
-  sourceStatusPending = "sourceStatusPending",
-  sourceStatusFailed = "sourceStatusFailed",
-  sourceStatusUnknown = "sourceStatusUnknown",
-  deviceNotSupportsNativePay = "deviceNotSupportsNativePay",
-  noPaymentRequest = "noPaymentRequest",
-  noMerchantIdentifier = "noMerchantIdentifier",
-  noAmount = "noAmount",
-  parseResponse = "parseResponse",
-  activityUnavailable = "activityUnavailable",
-  playServicesUnavailable = "playServicesUnavailable",
-  redirectCancelled = "redirectCancelled",
-  redirectNoSource = "redirectNoSource",
-  redirectWrongSourceId = "redirectWrongSourceId",
-  redirectCancelledByUser = "redirectCancelledByUser",
-  redirectFailed = "redirectFailed",
-  api = "api",
-  apiConnection = "apiConnection",
-  redirectSpecific = "redirectSpecific",
-  card = "card",
-  invalidRequest = "invalidRequest",
-  stripe = "stripe",
-  rateLimit = "rateLimit",
-  authentication = "authentication",
-  permission = "permission"
+  busy = 'busy',
+  cancelled = 'cancelled',
+  purchaseCancelled = 'purchaseCancelled',
+  sourceStatusCanceled = 'sourceStatusCanceled',
+  sourceStatusPending = 'sourceStatusPending',
+  sourceStatusFailed = 'sourceStatusFailed',
+  sourceStatusUnknown = 'sourceStatusUnknown',
+  deviceNotSupportsNativePay = 'deviceNotSupportsNativePay',
+  noPaymentRequest = 'noPaymentRequest',
+  noMerchantIdentifier = 'noMerchantIdentifier',
+  noAmount = 'noAmount',
+  parseResponse = 'parseResponse',
+  activityUnavailable = 'activityUnavailable',
+  playServicesUnavailable = 'playServicesUnavailable',
+  redirectCancelled = 'redirectCancelled',
+  redirectNoSource = 'redirectNoSource',
+  redirectWrongSourceId = 'redirectWrongSourceId',
+  redirectCancelledByUser = 'redirectCancelledByUser',
+  redirectFailed = 'redirectFailed',
+  api = 'api',
+  apiConnection = 'apiConnection',
+  redirectSpecific = 'redirectSpecific',
+  card = 'card',
+  invalidRequest = 'invalidRequest',
+  stripe = 'stripe',
+  rateLimit = 'rateLimit',
+  authentication = 'authentication',
+  permission = 'permission'
 }
 
 export const errorCodes: {
