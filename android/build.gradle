@@ -6,6 +6,10 @@ def DEFAULT_BUILD_TOOLS_VERSION             = '26.0.2'
 def DEFAULT_GOOGLE_PLAY_SERVICES_VERSION    = '11.8.0'
 def DEFAULT_FIREBASE_MESSAGING_VERSION      = '11.8.0'
 
+def safeGet(prop, fallback) {
+  rootProject.findProperty(prop) ?: fallback
+}
+
 android {
   compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
   buildToolsVersion rootProject.hasProperty('buildToolsVersion') ? rootProject.buildToolsVersion : DEFAULT_BUILD_TOOLS_VERSION
@@ -29,8 +33,8 @@ android {
 }
 
 dependencies {
-  def firebaseCoreVersion = project.hasProperty('firebaseCoreVersion') ? project.firebaseVersion  : project.hasProperty('firebaseVersion') ? project.firebaseVersion : DEFAULT_FIREBASE_MESSAGING_VERSION
-  def googlePlayServicesWalletVersion = rootProject.hasProperty('googlePlayServicesWalletVersion') ? project.googlePlayServicesWalletVersion : rootProject.hasProperty('googlePlayServicesVersion')  ? rootProject.googlePlayServicesVersion : DEFAULT_GOOGLE_PLAY_SERVICES_VERSION
+  def firebaseCoreVersion = safeGet('firebaseCoreVersion', safeGet('firebaseVersion', DEFAULT_FIREBASE_MESSAGING_VERSION ))
+  def googlePlayServicesWalletVersion = safeGet('googlePlayServicesWalletVersion', safeGet('googlePlayServicesVersion', DEFAULT_GOOGLE_PLAY_SERVICES_VERSION))
 
   implementation fileTree(include: ['*.jar'], dir: 'libs')
   implementation 'com.facebook.react:react-native:+'
