@@ -18,10 +18,6 @@
 
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:self.window];
-}
-
 - (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         _isFirstResponder = NO;
@@ -29,11 +25,6 @@
         _paymentCardTextField.delegate = self;
         [self addSubview:_paymentCardTextField];
         self.backgroundColor = [UIColor clearColor];
-        [[NSNotificationCenter defaultCenter]
-            addObserver:self
-               selector:@selector(keyboardWillShow:)
-                   name:UIKeyboardWillShowNotification
-                 object:self.window];
     }
     return self;
 }
@@ -44,7 +35,23 @@
 }
 
 - (void)reactWillMakeFirstResponder {
+    _jsRequestingFirstResponder = NO;
+}
+
+- (void)reactFocus {
     _jsRequestingFirstResponder = YES;
+    [self becomeFirstResponder];
+}
+
+- (void)reactFocusIfNeeded {
+    if (!_isFirstResponder) {
+        [self reactFocus];
+    }
+}
+
+- (void)reactBlur {
+    _jsRequestingFirstResponder = NO;
+    [self resignFirstResponder];
 }
 
 - (BOOL)canBecomeFirstResponder {
@@ -69,6 +76,7 @@
 }
 
 - (BOOL)becomeFirstResponder {
+    _jsRequestingFirstResponder = NO;
     _isFirstResponder = YES;
     return [_paymentCardTextField becomeFirstResponder];
 }
