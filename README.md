@@ -5,6 +5,12 @@
 
 React Native Stripe binding for iOS/Android platforms
 
+## Installation
+
+```
+yarn add @lifeomic/tipsi-stripe
+```
+
 ## Improvements
 
 - TypeScript support
