@@ -31,6 +31,11 @@ jobs:
 
     strategy:
       fail-fast: false
+      matrix:
+        # PLEASE CHANGE TO THE LANGUAGE(S) USED WITHIN THE TARGET REPOSITORY
+        # Options are ['csharp', 'cpp', 'go', 'java', 'javascript', 'python']
+        # Use 'javascript' for typescript-based repositories
+        language: ['javascript']
 
     steps:
     - name: Checkout repository
@@ -51,7 +56,7 @@ jobs:
       with:
         config-file: lifeomic/.github/config-files/codeql-config.yml@master  # uses our config file from the lifeomic/.github repo
         queries: +security-extended  # This will run all queries at https://github.com/github/codeql/:language/ql/src/codeql-suites/:language-security-extended.qls
-
+        languages: ${{ matrix.language }}
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
     - name: Autobuild
