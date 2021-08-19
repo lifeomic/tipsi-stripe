@@ -19,5 +19,5 @@ Pod::Spec.new do |s|
   s.source_files   = 'ios/TPSStripe/**/*.{h,m}'
 
   s.dependency 'React'
-  s.dependency 'Stripe', '~> 14.0.1'
+  s.dependency 'Stripe', '~> 14.0.2'
 end
