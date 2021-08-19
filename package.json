@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tipsi/tipsi-stripe.git"
+    "url": "git+https://github.com/lifeomic/tipsi-stripe.git"
   },
   "keywords": [
     "react",
