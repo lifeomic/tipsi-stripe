@@ -33,7 +33,7 @@ public class CreditCardFormOnChangeEvent extends Event<CreditCardFormOnChangeEve
     private WritableMap serializeEventData() {
         WritableMap eventData = Arguments.createMap();
         eventData.putBoolean("valid", isValid);
-        eventData.putMap("params", params);
+        eventData.putMap("params", params.copy());
         return eventData;
     }
 }
