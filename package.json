@@ -1,9 +1,12 @@
 {
   "name": "@lifeomic/tipsi-stripe",
-  "version": "7.7.6",
+  "version": "0.0.0",
   "description": "React Native Stripe binding for iOS/Andriod platforms",
   "main": "dist/index.js",
   "types": "index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "rm -rf dist",
     "prebuild": "yarn clean",
@@ -48,10 +51,12 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "conventional-changelog-conventionalcommits": "^4.6.0",
     "eslint": "4.19.1",
     "eslint-config-tipsi": "2.0.3",
     "esm": "3.0.28",
     "prop-types": "15.6.1",
+    "semantic-release": "^17.4.5",
     "tape": "4.9.0"
   }
 }
