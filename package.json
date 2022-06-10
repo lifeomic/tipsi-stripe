@@ -56,7 +56,7 @@
     "eslint-config-tipsi": "2.0.3",
     "esm": "3.0.28",
     "prop-types": "15.6.1",
-    "semantic-release": "^17.4.5",
+    "semantic-release": "^19.0.3",
     "tape": "4.9.0"
   }
 }
